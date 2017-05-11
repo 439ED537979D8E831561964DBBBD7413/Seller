@@ -56,5 +56,4 @@ public class HomeFragment extends BaseFragment {
                 return super.onOptionsItemSelected(item);
         }
     }
-
 }
