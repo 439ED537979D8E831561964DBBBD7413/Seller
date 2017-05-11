@@ -9,7 +9,6 @@ import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.VectorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -18,15 +17,10 @@ import android.support.design.widget.Snackbar;
 import android.support.graphics.drawable.VectorDrawableCompat;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import com.winsant.seller.R;
 import com.winsant.seller.ui.MyApplication;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Developer on 2/10/2017.
@@ -53,16 +47,28 @@ public class CommonDataUtility {
                 && activeNetwork.isConnectedOrConnecting();
     }
 
-    public static Typeface setTypeFace(Activity activity) {
+    public static Typeface setRobotoMediumTypeFace(Activity activity) {
         return Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Medium.ttf");
     }
 
-    public static Typeface setTypeFace1(Activity activity) {
+    public static Typeface setRobotoRegularTypeFace(Activity activity) {
         return Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Regular.ttf");
     }
 
-    public static Typeface setTitleTypeFace(Activity activity) {
-        return Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Bold.ttf");
+//    public static Typeface setRobotoBoldTypeFace(Activity activity) {
+//        return Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Bold.ttf");
+//    }
+
+    public static Typeface setHelveticaNeueHvTypeFace(Activity activity) {
+        return Typeface.createFromAsset(activity.getAssets(), "fonts/HelveticaNeueHv.ttf");
+    }
+
+    public static Typeface setHelveticaNeueMedTypeFace(Activity activity) {
+        return Typeface.createFromAsset(activity.getAssets(), "fonts/HelveticaNeueMed.ttf");
+    }
+
+    public static Typeface setHelveticaNeueTypeFace(Activity activity) {
+        return Typeface.createFromAsset(activity.getAssets(), "fonts/HelveticaNeue.ttf");
     }
 
     public static float convertSpToPixels(float sp, Context context) {

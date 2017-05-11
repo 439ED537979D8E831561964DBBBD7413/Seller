@@ -57,8 +57,8 @@ public class VolleyNetWorkCall {
             }
         }) {
             @Override
-            public Map<String,String> getHeaders() throws AuthFailureError {
-                HashMap<String,String> headers = new HashMap<String,String>();
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json; charset=utf-8");
                 return headers;
             }
@@ -101,7 +101,7 @@ public class VolleyNetWorkCall {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("userid", MyApplication.getInstance().getPreferenceUtility().getUserId());
+                params.put("userid", MyApplication.getInstance().getPreferenceUtility().getSellerId());
                 return params;
             }
         };

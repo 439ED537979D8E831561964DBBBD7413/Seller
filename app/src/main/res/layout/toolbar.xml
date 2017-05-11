@@ -16,6 +16,6 @@
         android:lines="2"
         android:text=""
         android:textColor="@android:color/white"
-        android:textSize="14sp" />
+        android:textSize="16sp" />
 
 </android.support.v7.widget.Toolbar>

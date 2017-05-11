@@ -1,7 +1,6 @@
 package com.winsant.seller.ui.fragment;
 
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.winsant.seller.R;
+import com.winsant.seller.ui.MyApplication;
 import com.winsant.seller.utils.CommonDataUtility;
 
 /**
@@ -19,15 +19,24 @@ import com.winsant.seller.utils.CommonDataUtility;
 
 public class HomeFragment extends BaseFragment {
 
+    private View rootView;
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setHasOptionsMenu(true);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_home, container, false);
+
+        rootView = inflater.inflate(R.layout.fragment_home, container, false);
+        bindView();
 
         return rootView;
+    }
+
+    private void bindView() {
+        TextView txtCompanyName = (TextView) rootView.findViewById(R.id.txtCompanyName);
+        txtCompanyName.setTypeface(CommonDataUtility.setHelveticaNeueHvTypeFace(activity));
+        txtCompanyName.setText(MyApplication.getInstance().getPreferenceUtility().getCompanyName());
     }
 
     @Override

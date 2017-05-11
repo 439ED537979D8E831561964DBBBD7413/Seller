@@ -65,7 +65,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         if (toolbar != null) {
             mToolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
         }
-        mToolbar_title.setTypeface(CommonDataUtility.setTitleTypeFace(activity));
+        mToolbar_title.setTypeface(CommonDataUtility.setHelveticaNeueHvTypeFace(activity));
         mToolbar_title.setText(getString(R.string.title_activity_forgot_pass));
 
         setSupportActionBar(toolbar);
@@ -94,14 +94,14 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         edtCPassword = (EditText) findViewById(R.id.edtCPassword);
         edtOtp = (EditText) findViewById(R.id.edtOtp);
 
-        edtUserId.setTypeface(CommonDataUtility.setTypeFace1(activity));
-        edtPassword.setTypeface(CommonDataUtility.setTypeFace1(activity));
-        edtCPassword.setTypeface(CommonDataUtility.setTypeFace1(activity));
-        edtOtp.setTypeface(CommonDataUtility.setTypeFace1(activity));
-        txtResend.setTypeface(CommonDataUtility.setTypeFace1(activity));
+        edtUserId.setTypeface(CommonDataUtility.setHelveticaNeueTypeFace(activity));
+        edtPassword.setTypeface(CommonDataUtility.setHelveticaNeueTypeFace(activity));
+        edtCPassword.setTypeface(CommonDataUtility.setHelveticaNeueTypeFace(activity));
+        edtOtp.setTypeface(CommonDataUtility.setHelveticaNeueTypeFace(activity));
+        txtResend.setTypeface(CommonDataUtility.setHelveticaNeueTypeFace(activity));
 
         btnOK = (Button) findViewById(R.id.btnOK);
-        btnOK.setTypeface(CommonDataUtility.setTypeFace1(activity));
+        btnOK.setTypeface(CommonDataUtility.setHelveticaNeueTypeFace(activity));
         btnOK.setOnClickListener(this);
         txtResend.setOnClickListener(this);
 

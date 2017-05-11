@@ -11,15 +11,16 @@ public class StaticDataUtility {
 
     // "userid":"570"
 
-    public static String SERVER_URL = "http://ios.winsant.com/";
+    public static String SERVER_URL = "http://192.168.1.107/seller_api/";
     // public static String SERVER_URL = "http://api.winsant.com/";
+
+    public static String LOGIN = "seller_login";
 
     public static String CATEGORY = "category";
     public static String CART = "cart";
     public static String SEARCH = "products/search";
     public static String OFFER = "offer";
     public static String WISHLIST = "members/wishlist";
-    public static String LOGIN = "users/login";
     public static String FB_LOGIN = "users/fb_login";
     public static String REGISTER = "users/user_register";
     public static String FORGOTTEN_PASSWORD = "users/forgotten_password";

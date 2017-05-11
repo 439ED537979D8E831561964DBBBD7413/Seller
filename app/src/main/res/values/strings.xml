@@ -54,4 +54,16 @@
     <string name="nav_logout">Logout</string>
     <string name="other">Other</string>
 
+    <string name="store_info">Store Info</string>
+    <string name="personal_info">Personal Info</string>
+    <string name="business_detail">Business Detail</string>
+    <string name="bank_detail">Bank Detail</string>
+    <string name="manage_profile">Manage Profile</string>
+
+    <string name="account">Account</string>
+    <string name="account_hint">View your store details and primary details</string>
+    <string name="business_hint">View your business details, bank details and KYC documents</string>
+    <string name="seller_profile_setting">Seller Profile Setting</string>
+    <string name="business_profile_setting">Business Profile Setting</string>
+
 </resources>

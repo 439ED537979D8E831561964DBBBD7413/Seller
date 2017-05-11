@@ -31,14 +31,6 @@ public class SharedPreferenceUtility {
         return appSharedPrefs.getBoolean("isLogin", false);
     }
 
-    public void setInt(String key, int value) {
-        prefsEditor.putInt(key, value).commit();
-    }
-
-    public int getInt(String key) {
-        return appSharedPrefs.getInt(key, 0);
-    }
-
     public void setToken(String value) {
         prefsEditor.putString("token", value).commit();
     }
@@ -47,20 +39,52 @@ public class SharedPreferenceUtility {
         return appSharedPrefs.getString("token", "");
     }
 
-    public void setString(String key, String value) {
-        prefsEditor.putString(key, value).commit();
+    public void setSellerId(String value) {
+        prefsEditor.putString("seller_id", value).commit();
     }
 
-    public String getString(String key) {
-        return appSharedPrefs.getString(key, "");
+    public String getSellerId() {
+        return appSharedPrefs.getString("seller_id", "");
     }
 
-    public void setUserId(String value) {
-        prefsEditor.putString("user_id", value).commit();
+    public void setSellerIdNo(String value) {
+        prefsEditor.putString("seller_id_no", value).commit();
     }
 
-    public String getUserId() {
-        return appSharedPrefs.getString("user_id", "");
+    public String getSellerIdNo() {
+        return appSharedPrefs.getString("seller_id_no", "");
+    }
+
+    public void setSellerName(String value) {
+        prefsEditor.putString("s_name", value).commit();
+    }
+
+    public String getSellerName() {
+        return appSharedPrefs.getString("s_name", "");
+    }
+
+    public void setFirstName(String value) {
+        prefsEditor.putString("first_name", value).commit();
+    }
+
+    public String getFirstName() {
+        return appSharedPrefs.getString("first_name", "");
+    }
+
+    public void setLastName(String value) {
+        prefsEditor.putString("last_name", value).commit();
+    }
+
+    public String getLastName() {
+        return appSharedPrefs.getString("last_name", "");
+    }
+
+    public void setCompanyName(String value) {
+        prefsEditor.putString("company_name", value).commit();
+    }
+
+    public String getCompanyName() {
+        return appSharedPrefs.getString("company_name", "");
     }
 
     public void setMobileNumber(String value) {
@@ -79,21 +103,23 @@ public class SharedPreferenceUtility {
         return appSharedPrefs.getString("email", "");
     }
 
-    public void setFirstName(String value) {
-        prefsEditor.putString("first_name", value).commit();
+    public void setInt(String key, int value) {
+        prefsEditor.putInt(key, value).commit();
     }
 
-    public String getFirstName() {
-        return appSharedPrefs.getString("first_name", "");
+    public int getInt(String key) {
+        return appSharedPrefs.getInt(key, 0);
     }
 
-    public void setLastName(String value) {
-        prefsEditor.putString("last_name", value).commit();
+    public void setString(String key, String value) {
+        prefsEditor.putString(key, value).commit();
     }
 
-    public String getLastName() {
-        return appSharedPrefs.getString("last_name", "");
+    public String getString(String key) {
+        return appSharedPrefs.getString(key, "");
     }
+
+
 }
 
 // username,email,uid,first_name,last_name,phone_no,address,zip,gender,city,state,profile_url,profile_pic,pass_flag,plan_flag

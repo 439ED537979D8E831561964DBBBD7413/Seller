@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +40,9 @@ public class HomeActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView toolbar_title;
     private String tag = "";
+    private View navHeader;
+    private RelativeLayout rl_header;
+    private TextView txtSellerName, txtSellerEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.main_toolbar);
         setSupportActionBar(toolbar);
         toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        toolbar_title.setTypeface(CommonDataUtility.setTitleTypeFace(activity));
+        toolbar_title.setTypeface(CommonDataUtility.setHelveticaNeueHvTypeFace(activity));
         toolbar_title.setText(getString(R.string.nav_home));
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ico_menu_svg);
@@ -95,7 +99,22 @@ public class HomeActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.mNavigationView);
 
-//        navHeader = mNavigationView.getHeaderView(0);
+        navHeader = mNavigationView.getHeaderView(0);
+        rl_header = (RelativeLayout) navHeader.findViewById(R.id.rl_header);
+        txtSellerName = (TextView) navHeader.findViewById(R.id.txtSellerName);
+        txtSellerEmail = (TextView) navHeader.findViewById(R.id.txtSellerEmail);
+
+        txtSellerName.setText(MyApplication.getInstance().getPreferenceUtility().getFirstName() + " " +
+                MyApplication.getInstance().getPreferenceUtility().getLastName());
+        txtSellerEmail.setText(MyApplication.getInstance().getPreferenceUtility().getEmail());
+
+        rl_header.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(activity, ProfileActivity.class));
+                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+            }
+        });
 
     }
 
