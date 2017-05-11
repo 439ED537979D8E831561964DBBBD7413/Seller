@@ -22,9 +22,10 @@ import com.winsant.seller.ui.fragment.HomeFragment;
 public class HomeActivity extends AppCompatActivity {
 
     private boolean doubleBackToExitPressedOnce = false;
-    protected ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
+    private Toolbar toolbar;
+    private View navHeader;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +34,11 @@ public class HomeActivity extends AppCompatActivity {
 
         setupToolbar();
         initNavigationDrawer();
+        setUpNavigationView();
     }
 
     private void setupToolbar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         final ActionBar ab = getSupportActionBar();
@@ -44,42 +46,113 @@ public class HomeActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
 
+//    private void loadNavHeader() {
+//        // name, website
+//        txtName.setText("Ravi Tamada");
+//        txtWebsite.setText("www.androidhive.info");
+//
+//        // loading header background image
+//        Glide.with(this).load(urlNavHeaderBg)
+//                .crossFade()
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .into(imgNavHeaderBg);
+//
+//        // Loading profile image
+//        Glide.with(this).load(urlProfileImg)
+//                .crossFade()
+//                .thumbnail(0.5f)
+//                .bitmapTransform(new CircleTransform(this))
+//                .diskCacheStrategy(DiskCacheStrategy.ALL)
+//                .into(imgProfile);
+//
+//        // showing dot next to notifications label
+//        navigationView.getMenu().getItem(3).setActionView(R.layout.menu_dot);
+//    }
+
     private void initNavigationDrawer() {
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
+        mNavigationView = (NavigationView) findViewById(R.id.mNavigationView);
 
-        setupActionBarDrawerToogle();
-        if (mNavigationView != null) {
-            setupDrawerContent(mNavigationView);
-        }
+        navHeader = mNavigationView.getHeaderView(0);
+
     }
 
-    private void setupActionBarDrawerToogle() {
+    private void setUpNavigationView() {
 
-        mDrawerToggle = new ActionBarDrawerToggle(
-                this,                  /* host Activity */
-                mDrawerLayout,         /* DrawerLayout object */
-                R.string.drawer_open,  /* "open drawer" description */
-                R.string.drawer_close  /* "close drawer" description */
-        ) {
+        //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 
-            /**
-             * Called when a drawer has settled in a completely closed state.
-             */
-            public void onDrawerClosed(View view) {
-                //Snackbar.make(view, R.string.drawer_close, Snackbar.LENGTH_SHORT).show();
+            // This method will trigger on item Click of navigation menu
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+                //Check to see which item was being clicked and perform appropriate action
+                switch (menuItem.getItemId()) {
+                    //Replacing the main content with ContentFragment Which is our Inbox View;
+                    case R.id.nav_home:
+                        pushFragment(new HomeFragment());
+                        break;
+                    case R.id.nav_order:
+                        pushFragment(new HomeFragment());
+                        break;
+                    case R.id.nav_listing:
+                        pushFragment(new HomeFragment());
+                        break;
+                    case R.id.nav_payment:
+                        pushFragment(new HomeFragment());
+                        break;
+                    case R.id.nav_return:
+                        pushFragment(new HomeFragment());
+                        break;
+                    case R.id.nav_support:
+                        pushFragment(new HomeFragment());
+                        return true;
+                    case R.id.nav_setting:
+                        pushFragment(new HomeFragment());
+                        return true;
+                    case R.id.nav_logout:
+                        pushFragment(new HomeFragment());
+                        return true;
+                    default:
+                        return true;
+                }
+
+                //Checking if the item is in checked state or not, if not make it in checked state
+                if (menuItem.isChecked()) {
+                    menuItem.setChecked(false);
+                } else {
+                    menuItem.setChecked(true);
+                }
+                menuItem.setChecked(true);
+
+                closeNavDrawer();
+
+                return true;
+            }
+        });
+
+
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close) {
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                // Code here will be triggered once the drawer closes as we dont want anything to happen so we leave this blank
+                super.onDrawerClosed(drawerView);
             }
 
-            /**
-             * Called when a drawer has settled in a completely open state.
-             */
+            @Override
             public void onDrawerOpened(View drawerView) {
-                //Snackbar.make(drawerView, R.string.drawer_open, Snackbar.LENGTH_SHORT).show();
+                // Code here will be triggered once the drawer open as we dont want anything to happen so we leave this blank
+                super.onDrawerOpened(drawerView);
             }
         };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
 
+        //Setting the actionbarToggle to drawer layout
+        mDrawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        //calling sync state is necessary or else your hamburger icon wont show up
+        actionBarDrawerToggle.syncState();
     }
 
     protected boolean isNavDrawerOpen() {
@@ -90,21 +163,6 @@ public class HomeActivity extends AppCompatActivity {
         if (mDrawerLayout != null) {
             mDrawerLayout.closeDrawer(GravityCompat.START);
         }
-    }
-
-
-    private void setupDrawerContent(NavigationView navigationView) {
-
-        //setting up selected item listener
-        navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        menuItem.setChecked(true);
-                        mDrawerLayout.closeDrawers();
-                        return true;
-                    }
-                });
     }
 
     @Override
