@@ -206,7 +206,6 @@ public class HomeActivity extends AppCompatActivity {
         if (isNavDrawerOpen())
             closeNavDrawer();
 
-        System.gc();
         if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
 
             for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount() - 1; ++i) {
