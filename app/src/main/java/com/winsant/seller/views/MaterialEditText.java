@@ -29,7 +29,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.EditText;
 import android.widget.ImageView;
 
-import com.winsant.android.R;
+import com.winsant.seller.R;
 
 public class MaterialEditText extends EditText {
 

@@ -22,10 +22,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import com.winsant.android.R;
-import com.winsant.android.like.Icon;
-import com.winsant.android.like.IconType;
-import com.winsant.android.ui.MyApplication;
+import com.winsant.seller.R;
+import com.winsant.seller.ui.MyApplication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,38 +94,38 @@ public class CommonDataUtility {
                 activity.getCurrentFocus().getWindowToken(), 0);
     }
 
-    public static void setBadgeCount(Context context, MenuItem itemCart, String count) {
-
-        LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
-
-        BadgeDrawable badge;
-
-        // Reuse drawable if possible
-        Drawable reuse = icon.findDrawableByLayerId(R.id.ic_badge);
-        if (reuse != null && reuse instanceof BadgeDrawable) {
-            badge = (BadgeDrawable) reuse;
-        } else {
-            badge = new BadgeDrawable(context);
-        }
-
-        badge.setCount(count);
-        icon.mutate();
-        icon.setDrawableByLayerId(R.id.ic_badge, badge);
-    }
-
-    public static double mapValueFromRangeToRange(double value, double fromLow, double fromHigh, double toLow, double toHigh) {
-        return toLow + ((value - fromLow) / (fromHigh - fromLow) * (toHigh - toLow));
-    }
-
-    public static double clamp(double value, double low, double high) {
-        return Math.min(Math.max(value, low), high);
-    }
-
-    public static List<Icon> getIcons() {
-        List<Icon> icons = new ArrayList<>();
-        icons.add(new Icon(R.drawable.ico_wishlist_selected_svg, R.drawable.ico_wishlist_normal_svg, IconType.Heart));
-        return icons;
-    }
+//    public static void setBadgeCount(Context context, MenuItem itemCart, String count) {
+//
+//        LayerDrawable icon = (LayerDrawable) itemCart.getIcon();
+//
+//        BadgeDrawable badge;
+//
+//        // Reuse drawable if possible
+//        Drawable reuse = icon.findDrawableByLayerId(R.id.ic_badge);
+//        if (reuse != null && reuse instanceof BadgeDrawable) {
+//            badge = (BadgeDrawable) reuse;
+//        } else {
+//            badge = new BadgeDrawable(context);
+//        }
+//
+//        badge.setCount(count);
+//        icon.mutate();
+//        icon.setDrawableByLayerId(R.id.ic_badge, badge);
+//    }
+//
+//    public static double mapValueFromRangeToRange(double value, double fromLow, double fromHigh, double toLow, double toHigh) {
+//        return toLow + ((value - fromLow) / (fromHigh - fromLow) * (toHigh - toLow));
+//    }
+//
+//    public static double clamp(double value, double low, double high) {
+//        return Math.min(Math.max(value, low), high);
+//    }
+//
+//    public static List<Icon> getIcons() {
+//        List<Icon> icons = new ArrayList<>();
+//        icons.add(new Icon(R.drawable.ico_wishlist_selected_svg, R.drawable.ico_wishlist_normal_svg, IconType.Heart));
+//        return icons;
+//    }
 
     public static Drawable resizeDrawable(Context context, Drawable drawable, int width, int height) {
         Bitmap bitmap = getBitmap(drawable, width, height);

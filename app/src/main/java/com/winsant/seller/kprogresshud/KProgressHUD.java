@@ -28,7 +28,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import com.winsant.android.R;
+import com.winsant.seller.R;
 
 public class KProgressHUD {
 

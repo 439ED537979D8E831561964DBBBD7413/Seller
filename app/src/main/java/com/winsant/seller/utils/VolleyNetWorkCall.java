@@ -10,7 +10,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.winsant.android.ui.MyApplication;
+import com.winsant.seller.ui.MyApplication;
 
 import org.json.JSONObject;
 

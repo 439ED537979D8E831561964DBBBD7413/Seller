@@ -7,13 +7,21 @@
             android:icon="@drawable/main_home_selector"
             android:title="@string/nav_home" />
         <item
-            android:id="@+id/nav_about"
+            android:id="@+id/nav_order"
             android:icon="@drawable/main_home_selector"
-            android:title="@string/nav_about" />
+            android:title="@string/nav_order" />
         <item
-            android:id="@+id/nav_settings"
+            android:id="@+id/nav_listing"
             android:icon="@drawable/main_home_selector"
-            android:title="@string/nav_settings" />
+            android:title="@string/nav_listing" />
+        <item
+            android:id="@+id/nav_payment"
+            android:icon="@drawable/main_home_selector"
+            android:title="@string/nav_payment" />
+        <item
+            android:id="@+id/nav_return"
+            android:icon="@drawable/main_home_selector"
+            android:title="@string/nav_return" />
 
         <item
             android:id="@+id/navigation_subheader"
@@ -30,6 +38,5 @@
             </menu>
         </item>
     </group>
-
 
 </menu>

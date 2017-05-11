@@ -24,7 +24,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.winsant.android.R;
+import com.winsant.seller.R;
 
 class AnnularView extends View implements Determinate {
 

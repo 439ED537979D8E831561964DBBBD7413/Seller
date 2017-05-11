@@ -22,7 +22,7 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
 
-import com.winsant.android.R;
+import com.winsant.seller.R;
 
 /**
  * A Material style progress wheel, compatible up to 2.2.

@@ -38,7 +38,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.activity_action_notification)).setIcon(R.drawable.ico_menu_cart).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.activity_action_notification)).setIcon(R.drawable.ico_notification_svg).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
         super.onCreateOptionsMenu(menu, inflater);
     }
 

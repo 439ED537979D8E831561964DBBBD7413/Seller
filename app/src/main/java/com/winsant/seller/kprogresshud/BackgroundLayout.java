@@ -23,7 +23,7 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
 
-import com.winsant.android.R;
+import com.winsant.seller.R;
 
 public class BackgroundLayout extends LinearLayout {
 
