@@ -219,7 +219,6 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -280,43 +279,3 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 }
-
-//    private void selectFragment(MenuItem item) {
-//        Fragment frag = null;
-//        // init corresponding fragment_home
-//        switch (item.getItemId()) {
-//            case R.id.action_home:
-//                frag = MenuFragment.newInstance(getString(R.string.text_home));
-//                break;
-//            case R.id.action_offer:
-//                frag = MenuFragment.newInstance(getString(R.string.text_offer));
-//                break;
-//            case R.id.action_concept:
-//                frag = MenuFragment.newInstance(getString(R.string.text_concept));
-//                break;
-//            case R.id.action_wishlist:
-//                frag = MenuFragment.newInstance(getString(R.string.text_wishlist));
-//                break;
-//            case R.id.action_profile:
-//                frag = MenuFragment.newInstance(getString(R.string.text_profile));
-//                break;
-//        }
-//
-//        // update selected item
-//        mSelectedItem = item.getItemId();
-//
-//        item.setChecked(true);
-//
-//        // uncheck the other items.
-//        for (int i = 0; i < bottomNavigationView.getMenu().size(); i++) {
-//            MenuItem menuItem = bottomNavigationView.getMenu().getItem(i);
-//            menuItem.setChecked(menuItem.getItemId() == item.getItemId());
-//        }
-//
-//        toolbar_title.setText(item.getTitle());
-//
-//        if (frag != null) {
-//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//            ft.add(R.id.container, frag, frag.getTag());
-//            ft.commit();
-//        }
