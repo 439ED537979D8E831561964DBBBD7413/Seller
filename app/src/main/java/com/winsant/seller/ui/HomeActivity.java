@@ -2,205 +2,165 @@ package com.winsant.seller.ui;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.TypedValue;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.SubMenu;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.BaseAdapter;
+import android.widget.HeaderViewListAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.winsant.seller.R;
+import com.winsant.seller.ui.fragment.HomeFragment;
 
-public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+public class HomeActivity extends AppCompatActivity {
 
     private boolean doubleBackToExitPressedOnce = false;
-    private ImageView imgHome, imgOffers, imgWishList, imgProfile;
-    private TextView txtHome, txtOffers, txtWishList, txtProfile;
-    private String tag = "";
+    protected ActionBarDrawerToggle mDrawerToggle;
+    private DrawerLayout mDrawerLayout;
+    private NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        LinearLayout llHome = (LinearLayout) findViewById(R.id.llHome);
-        LinearLayout llOffers = (LinearLayout) findViewById(R.id.llOffers);
-        LinearLayout llWishList = (LinearLayout) findViewById(R.id.llWishList);
-        LinearLayout llProfile = (LinearLayout) findViewById(R.id.llProfile);
-
-        imgHome = (ImageView) findViewById(R.id.imgHome);
-        imgOffers = (ImageView) findViewById(R.id.imgOffers);
-        imgWishList = (ImageView) findViewById(R.id.imgWishList);
-        imgProfile = (ImageView) findViewById(R.id.imgProfile);
-
-        txtHome = (TextView) findViewById(R.id.txtHome);
-        txtOffers = (TextView) findViewById(R.id.txtOffers);
-        txtWishList = (TextView) findViewById(R.id.txtWishList);
-        txtProfile = (TextView) findViewById(R.id.txtProfile);
-
-        if (getResources().getBoolean(R.bool.isLargeTablet)) {
-            txtHome.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-            txtOffers.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-            txtWishList.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-            txtProfile.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-        } else if (getResources().getBoolean(R.bool.isTablet)) {
-            txtHome.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-            txtOffers.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-            txtWishList.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-            txtProfile.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-        } else {
-            txtHome.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-            txtOffers.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-            txtWishList.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-            txtProfile.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
-        }
-
-        txtHome.setOnClickListener(this);
-        txtOffers.setOnClickListener(this);
-        txtWishList.setOnClickListener(this);
-        txtProfile.setOnClickListener(this);
-
-        llHome.setOnClickListener(this);
-        llOffers.setOnClickListener(this);
-        llWishList.setOnClickListener(this);
-        llProfile.setOnClickListener(this);
-
-        imgHome.setOnClickListener(this);
-        imgOffers.setOnClickListener(this);
-        imgWishList.setOnClickListener(this);
-        imgProfile.setOnClickListener(this);
-
-        tag = "home";
-        tabSelection(true, false, false, false);
-        setFragment(0);
+        setupToolbar();
+        initNavigationDrawer();
     }
 
-    @Override
-    public void onClick(View v) {
+    private void setupToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        switch ((v.getId())) {
-            case R.id.llHome:
-            case R.id.txtHome:
-            case R.id.imgHome:
+        final ActionBar ab = getSupportActionBar();
+        ab.setHomeAsUpIndicator(R.drawable.ico_menu_svg);
+        ab.setDisplayHomeAsUpEnabled(true);
+    }
 
-                if (!tag.equals("home")) {
-                    tabSelection(true, false, false, false);
-                    setFragment(0);
-                }
-                break;
-            case R.id.llOffers:
-            case R.id.txtOffers:
-            case R.id.imgOffers:
+    private void initNavigationDrawer() {
 
-                if (!tag.equals("offers")) {
-                    tabSelection(false, true, false, false);
-                    setFragment(1);
-                }
-                break;
-            case R.id.llWishList:
-            case R.id.txtWishList:
-            case R.id.imgWishList:
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
 
-                if (!tag.equals("wishList")) {
-                    tabSelection(false, false, true, false);
-                    setFragment(2);
-                }
-                break;
-            case R.id.llProfile:
-            case R.id.txtProfile:
-            case R.id.imgProfile:
-
-                if (!tag.equals("profile")) {
-                    tabSelection(false, false, false, true);
-                    setFragment(3);
-                }
-                break;
+        setupActionBarDrawerToogle();
+        if (mNavigationView != null) {
+            setupDrawerContent(mNavigationView);
         }
     }
 
-    private void tabSelection(boolean tab1, boolean tab2, boolean tab3, boolean tab4) {
-        imgHome.setSelected(tab1);
-        txtHome.setSelected(tab1);
+    private void setupActionBarDrawerToogle() {
 
-        imgOffers.setSelected(tab2);
-        txtOffers.setSelected(tab2);
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,                  /* host Activity */
+                mDrawerLayout,         /* DrawerLayout object */
+                R.string.drawer_open,  /* "open drawer" description */
+                R.string.drawer_close  /* "close drawer" description */
+        ) {
 
-        imgWishList.setSelected(tab3);
-        txtWishList.setSelected(tab3);
+            /**
+             * Called when a drawer has settled in a completely closed state.
+             */
+            public void onDrawerClosed(View view) {
+                Snackbar.make(view, R.string.drawer_close, Snackbar.LENGTH_SHORT).show();
+            }
 
-        imgProfile.setSelected(tab4);
-        txtProfile.setSelected(tab4);
+            /**
+             * Called when a drawer has settled in a completely open state.
+             */
+            public void onDrawerOpened(View drawerView) {
+                Snackbar.make(drawerView, R.string.drawer_open, Snackbar.LENGTH_SHORT).show();
+            }
+        };
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
     }
 
-    private void setFragment(int position) {
+    private void addItemsRunTime(NavigationView navigationView) {
 
-        Fragment frag = null;
-
-        switch (position) {
-            case 0:
-
-                for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount(); ++i) {
-                    getSupportFragmentManager().popBackStack();
-                }
-
-//                frag = new HomeFragment();
-                tag = "home";
-                break;
-            case 1:
-//                frag = new OfferListFragment();
-                tag = "offers";
-                break;
-            case 2:
-//                frag = new WishListFragment();
-                tag = "wishList";
-                break;
-            case 3:
-//                frag = new ProfileFragment();
-                tag = "profile";
-                break;
-
+        //adding items run time
+        final Menu menu = navigationView.getMenu();
+        for (int i = 1; i <= 3; i++) {
+            menu.add("Runtime item " + i);
         }
-        pushFragment(frag, tag);
+
+        // adding a section and items into it
+        final SubMenu subMenu = menu.addSubMenu("SubMenu Title");
+        for (int i = 1; i <= 2; i++) {
+            subMenu.add("SubMenu Item " + i);
+        }
+
+        // refreshing navigation drawer adapter
+        for (int i = 0, count = mNavigationView.getChildCount(); i < count; i++) {
+            final View child = mNavigationView.getChildAt(i);
+            if (child != null && child instanceof ListView) {
+                final ListView menuView = (ListView) child;
+                final HeaderViewListAdapter adapter = (HeaderViewListAdapter) menuView.getAdapter();
+                final BaseAdapter wrapped = (BaseAdapter) adapter.getWrappedAdapter();
+                wrapped.notifyDataSetChanged();
+            }
+        }
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+    protected boolean isNavDrawerOpen() {
+        return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(GravityCompat.START);
+    }
+
+    protected void closeNavDrawer() {
+        if (mDrawerLayout != null) {
+            mDrawerLayout.closeDrawer(GravityCompat.START);
+        }
+    }
+
+
+    private void setupDrawerContent(NavigationView navigationView) {
+
+        addItemsRunTime(navigationView);
+
+        //setting up selected item listener
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        menuItem.setChecked(true);
+                        mDrawerLayout.closeDrawers();
+                        return true;
+                    }
+                });
     }
 
     @Override
     public void onBackPressed() {
 
+        if (isNavDrawerOpen())
+            closeNavDrawer();
+
         System.gc();
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
 
-        if (!tag.equals("home")) {
-            if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
-
-                for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount() - 1; ++i) {
-                    getSupportFragmentManager().popBackStack();
-                }
-
-                tag = "home";
-                tabSelection(true, false, false, false);
-//            FragmentManager fragmentManager = getSupportFragmentManager();
-//            if (fragmentManager != null) {
-//                FragmentTransaction ft = fragmentManager.beginTransaction();
-//                if (ft != null) {
-//                    ft.replace(R.id.container, new HomeFragment());
-//                    ft.commit();
-//                }
-//            }
-            } else {
-                backPress();
+            for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount() - 1; ++i) {
+                getSupportFragmentManager().popBackStack();
             }
+
+            pushFragment(new HomeFragment());
+
         } else {
             backPress();
         }
     }
+
 
     @Override
     protected void onResume() {
@@ -226,12 +186,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * Method to push any fragment into given id.
+     * Method to push any fragment_home into given id.
      *
      * @param fragment An instance of Fragment to show into the given id.
      */
 
-    protected void pushFragment(Fragment fragment, String tag) {
+    protected void pushFragment(Fragment fragment) {
         if (fragment == null)
             return;
 
@@ -269,7 +229,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 //    }
 //    private void selectFragment(MenuItem item) {
 //        Fragment frag = null;
-//        // init corresponding fragment
+//        // init corresponding fragment_home
 //        switch (item.getItemId()) {
 //            case R.id.action_home:
 //                frag = MenuFragment.newInstance(getString(R.string.text_home));
