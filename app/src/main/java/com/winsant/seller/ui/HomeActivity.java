@@ -28,6 +28,7 @@ import com.winsant.seller.ui.fragment.ReturnFragment;
 import com.winsant.seller.ui.fragment.SettingFragment;
 import com.winsant.seller.ui.fragment.SupportFragment;
 import com.winsant.seller.utils.CommonDataUtility;
+import com.winsant.seller.utils.StaticDataUtility;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -37,6 +38,7 @@ public class HomeActivity extends AppCompatActivity {
     private NavigationView mNavigationView;
     private Toolbar toolbar;
     private TextView toolbar_title;
+    private String tag = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class HomeActivity extends AppCompatActivity {
         initNavigationDrawer();
         setUpNavigationView();
         pushFragment(new HomeFragment());
+        tag = "home";
+        mNavigationView.setCheckedItem(R.id.nav_home);
     }
 
     private void setupToolbar() {
@@ -108,30 +112,37 @@ public class HomeActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.nav_home:
+                        tag = "home";
                         setToolbarTitle(getString(R.string.nav_home));
                         pushFragment(new HomeFragment());
                         break;
                     case R.id.nav_order:
+                        tag = "order";
                         setToolbarTitle(getString(R.string.nav_order));
                         pushFragment(new OrderFragment());
                         break;
                     case R.id.nav_listing:
+                        tag = "listing";
                         setToolbarTitle(getString(R.string.nav_listing));
                         pushFragment(new ListingFragment());
                         break;
                     case R.id.nav_payment:
+                        tag = "payment";
                         setToolbarTitle(getString(R.string.nav_payment));
                         pushFragment(new PaymentFragment());
                         break;
                     case R.id.nav_return:
+                        tag = "return";
                         setToolbarTitle(getString(R.string.nav_return));
                         pushFragment(new ReturnFragment());
                         break;
                     case R.id.nav_support:
+                        tag = "support";
                         setToolbarTitle(getString(R.string.nav_support));
                         pushFragment(new SupportFragment());
                         return true;
                     case R.id.nav_setting:
+                        tag = "setting";
                         setToolbarTitle(getString(R.string.nav_setting));
                         pushFragment(new SettingFragment());
                         return true;
@@ -205,14 +216,23 @@ public class HomeActivity extends AppCompatActivity {
         if (isNavDrawerOpen())
             closeNavDrawer();
 
-        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+        System.out.println(StaticDataUtility.APP_TAG + " count --> " + getSupportFragmentManager().getBackStackEntryCount());
 
-            for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount() - 1; ++i) {
-                getSupportFragmentManager().popBackStack();
+        if (!tag.equals("home")) {
+            if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+
+                for (int i = 0; i < getSupportFragmentManager().getBackStackEntryCount() - 1; ++i) {
+                    getSupportFragmentManager().popBackStack();
+                }
+
+                tag = "home";
+                pushFragment(new HomeFragment());
+                mNavigationView.setCheckedItem(R.id.nav_home);
+                setToolbarTitle(getString(R.string.nav_home));
+
+            } else {
+                backPress();
             }
-
-            pushFragment(new HomeFragment());
-
         } else {
             backPress();
         }
