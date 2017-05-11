@@ -21,17 +21,11 @@ public class HomeFragment extends BaseFragment {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+//        setHasOptionsMenu(true);
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.main_toolbar);
-        activity.setSupportActionBar(toolbar);
-        TextView toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        toolbar_title.setTypeface(CommonDataUtility.setTitleTypeFace(activity));
-        toolbar_title.setText(getString(R.string.app_name));
 
         return rootView;
     }

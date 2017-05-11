@@ -52,5 +52,6 @@
     <string name="nav_support">Support</string>
     <string name="nav_setting">Settings</string>
     <string name="nav_logout">Logout</string>
+    <string name="other">Other</string>
 
 </resources>

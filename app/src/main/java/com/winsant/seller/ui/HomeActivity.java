@@ -1,5 +1,7 @@
 package com.winsant.seller.ui;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -8,42 +10,57 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.winsant.seller.R;
 import com.winsant.seller.ui.fragment.HomeFragment;
+import com.winsant.seller.ui.fragment.ListingFragment;
+import com.winsant.seller.ui.fragment.OrderFragment;
+import com.winsant.seller.ui.fragment.PaymentFragment;
+import com.winsant.seller.ui.fragment.ReturnFragment;
+import com.winsant.seller.ui.fragment.SettingFragment;
+import com.winsant.seller.ui.fragment.SupportFragment;
+import com.winsant.seller.utils.CommonDataUtility;
 
 public class HomeActivity extends AppCompatActivity {
 
+    private Activity activity;
     private boolean doubleBackToExitPressedOnce = false;
     private DrawerLayout mDrawerLayout;
     private NavigationView mNavigationView;
     private Toolbar toolbar;
-    private View navHeader;
+    private TextView toolbar_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        activity = HomeActivity.this;
+
         setupToolbar();
         initNavigationDrawer();
         setUpNavigationView();
+        pushFragment(new HomeFragment());
     }
 
     private void setupToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        final ActionBar ab = getSupportActionBar();
-        ab.setHomeAsUpIndicator(R.drawable.ico_menu_svg);
-        ab.setDisplayHomeAsUpEnabled(true);
+        toolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        setSupportActionBar(toolbar);
+        toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
+        toolbar_title.setTypeface(CommonDataUtility.setTitleTypeFace(activity));
+        toolbar_title.setText(getString(R.string.nav_home));
+
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ico_menu_svg);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 //    private void loadNavHeader() {
@@ -74,7 +91,7 @@ public class HomeActivity extends AppCompatActivity {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mNavigationView = (NavigationView) findViewById(R.id.mNavigationView);
 
-        navHeader = mNavigationView.getHeaderView(0);
+//        navHeader = mNavigationView.getHeaderView(0);
 
     }
 
@@ -91,28 +108,42 @@ public class HomeActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     //Replacing the main content with ContentFragment Which is our Inbox View;
                     case R.id.nav_home:
+                        setToolbarTitle(getString(R.string.nav_home));
                         pushFragment(new HomeFragment());
                         break;
                     case R.id.nav_order:
-                        pushFragment(new HomeFragment());
+                        setToolbarTitle(getString(R.string.nav_order));
+                        pushFragment(new OrderFragment());
                         break;
                     case R.id.nav_listing:
-                        pushFragment(new HomeFragment());
+                        setToolbarTitle(getString(R.string.nav_listing));
+                        pushFragment(new ListingFragment());
                         break;
                     case R.id.nav_payment:
-                        pushFragment(new HomeFragment());
+                        setToolbarTitle(getString(R.string.nav_payment));
+                        pushFragment(new PaymentFragment());
                         break;
                     case R.id.nav_return:
-                        pushFragment(new HomeFragment());
+                        setToolbarTitle(getString(R.string.nav_return));
+                        pushFragment(new ReturnFragment());
                         break;
                     case R.id.nav_support:
-                        pushFragment(new HomeFragment());
+                        setToolbarTitle(getString(R.string.nav_support));
+                        pushFragment(new SupportFragment());
                         return true;
                     case R.id.nav_setting:
-                        pushFragment(new HomeFragment());
+                        setToolbarTitle(getString(R.string.nav_setting));
+                        pushFragment(new SettingFragment());
                         return true;
                     case R.id.nav_logout:
-                        pushFragment(new HomeFragment());
+
+                        CommonDataUtility.clearData();
+
+                        Intent intent = new Intent(activity, SplashActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        finish();
+
                         return true;
                     default:
                         return true;
@@ -153,6 +184,10 @@ public class HomeActivity extends AppCompatActivity {
 
         //calling sync state is necessary or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
+    }
+
+    private void setToolbarTitle(String title) {
+        toolbar_title.setText(title);
     }
 
     protected boolean isNavDrawerOpen() {
@@ -228,29 +263,25 @@ public class HomeActivity extends AppCompatActivity {
             }
         }
     }
-}
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.activity_action_cart)).setIcon(R.drawable.ico_menu_cart).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-//        return true;
-//    }
 
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//
-//            case 1:
-//
-//                if (MyApplication.getInstance().getPreferenceUtility().getLogin()) {
-//                    startActivity(new Intent(HomeActivity.this, CartActivity.class));
-//                } else {
-//                    startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-//                }
-//                return true;
-//
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(Menu.NONE, 1, Menu.NONE, getString(R.string.activity_action_notification)).setIcon(R.drawable.ico_notification_svg).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case 1:
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+}
+
 //    private void selectFragment(MenuItem item) {
 //        Fragment frag = null;
 //        // init corresponding fragment_home
