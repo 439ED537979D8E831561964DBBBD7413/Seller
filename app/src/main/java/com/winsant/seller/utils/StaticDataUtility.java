@@ -15,6 +15,9 @@ public class StaticDataUtility {
     // public static String SERVER_URL = "http://api.winsant.com/";
 
     public static String LOGIN = "seller_login";
+    public static String PERSONAL_DETAIL = "seller/personal_detail";
+    public static String ACCOUNT_DETAIL = "seller/account_detail";
+
 
     public static String CATEGORY = "category";
     public static String CART = "cart";

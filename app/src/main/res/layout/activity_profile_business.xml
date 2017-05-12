@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ll_address"
     android:layout_width="match_parent"
@@ -11,10 +11,19 @@
         android:id="@+id/main_toolbar"
         layout="@layout/toolbar" />
 
+    <ImageView
+        android:id="@+id/imgError"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/txtAddAddress"
+        android:contentDescription="@string/app_name"
+        android:visibility="gone" />
+
     <TextView
         android:id="@+id/txtAddAddress"
         android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:layout_below="@+id/main_toolbar"
         android:background="@drawable/cardview"
         android:gravity="center|start"
         android:paddingEnd="16dp"
@@ -26,8 +35,10 @@
         android:textSize="20sp" />
 
     <android.support.v4.widget.NestedScrollView
+        android:id="@+id/ns_business"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@+id/txtAddAddress"
         android:background="@color/rose"
         android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -43,4 +54,4 @@
         </LinearLayout>
 
     </android.support.v4.widget.NestedScrollView>
-</LinearLayout>
+</RelativeLayout>

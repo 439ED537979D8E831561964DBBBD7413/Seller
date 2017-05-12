@@ -55,9 +55,9 @@ public class CommonDataUtility {
         return Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Regular.ttf");
     }
 
-//    public static Typeface setRobotoBoldTypeFace(Activity activity) {
-//        return Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Bold.ttf");
-//    }
+    public static Typeface setRobotoBoldTypeFace(Activity activity) {
+        return Typeface.createFromAsset(activity.getAssets(), "fonts/Roboto-Bold.ttf");
+    }
 
     public static Typeface setHelveticaNeueHvTypeFace(Activity activity) {
         return Typeface.createFromAsset(activity.getAssets(), "fonts/HelveticaNeueHv.ttf");

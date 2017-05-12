@@ -63,7 +63,7 @@
     <string name="account">Account</string>
     <string name="account_hint">View your store details and primary details</string>
     <string name="business_hint">View your business details, bank details and KYC documents</string>
-    <string name="seller_profile_setting">Seller Profile Setting</string>
-    <string name="business_profile_setting">Business Profile Setting</string>
+    <string name="seller_profile_setting">Seller Profile</string>
+    <string name="business_profile_setting">Business Profile</string>
 
 </resources>
