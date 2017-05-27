@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnRequest"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/bg_ratting"
+        android:text="@string/new_brand_request"
+        android:textColor="@color/white" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btnStatus"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/bg_ratting"
+        android:text="@string/requested_brand_status"
+        android:textColor="@color/white" />
+
+</LinearLayout>

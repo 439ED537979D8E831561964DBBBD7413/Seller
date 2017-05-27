@@ -5,6 +5,8 @@
     <string name="activity_action_notification">Notification</string>
 
     <string name="title_activity_login">Winsant Login</string>
+    <string name="title_activity_brand_request">Brand Request</string>
+    <string name="title_activity_brand_status">Brand Status</string>
     <string name="title_activity_sign_up">Winsant Sing Up</string>
     <string name="title_activity_forgot_pass">Forgot Password</string>
     <string name="title_activity_reset_pass">Reset Password</string>
@@ -22,6 +24,11 @@
     <string name="no_wish_list_data">simple browse products and tap on heart icon</string>
     <string name="no_wish_list_login_hint">Please Login/Sign Up to show your wish list data.</string>
     <string name="no_offer_hint">No offers available.</string>
+
+    <string name="crop_image_menu_rotate_left">Rotate counter clockwise</string>
+    <string name="crop_image_menu_rotate_right">Rotate</string>
+    <string name="crop_image_menu_crop">Crop</string>
+    <string name="pick_image_intent_chooser_title">Select source</string>
 
     <!-- Login / Register-->
     <string name="sign_in">SIGN IN</string>
@@ -45,6 +52,8 @@
     <string name="drawer_close">Close Drawer</string>
 
     <string name="nav_home">Home</string>
+    <string name="nav_category">Category</string>
+    <string name="nav_brand">Brand</string>
     <string name="nav_order">Order</string>
     <string name="nav_listing">Listings</string>
     <string name="nav_payment">Payments</string>
@@ -65,5 +74,38 @@
     <string name="business_hint">View your business details, bank details and KYC documents</string>
     <string name="seller_profile_setting">Seller Profile</string>
     <string name="business_profile_setting">Business Profile</string>
+    <string name="pending">Pending</string>
+    <string name="start_selling">Start Selling</string>
+    <string name="rejected">Rejected</string>
+    <string name="apply_to_sell">Apply to sell</string>
+    <string name="approve_text_hint">Dear seller, you have to start selling with bellow category.</string>
+    <string name="your_interested_request_categories">Your Interested Request Categories.</string>
+    <string name="your_future_selling_category">Your Future Selling Category</string>
+    <string name="category_status">Category Status</string>
+    <string name="comments">Comments</string>
+    <string name="admin_time">Admin Time</string>
+    <string name="request_time">Request Time</string>
+    <string name="status">Status</string>
+    <string name="request_id">Request ID</string>
+    <string name="category">Category</string>
+    <string name="winsant_brand_registry_application">Winsant Brand Registry Application</string>
+    <string name="enter_the_brand_name">Enter the brand name</string>
+    <string name="enter_brand_name">Enter brand name</string>
+    <string name="select_brand_name">Select brand name</string>
+    <string name="enter_the_category_name">Enter the Category name</string>
+    <string name="select_category_name">Select Category name</string>
+    <string name="select_your_relationship_to_this_brand">Select your relationship to this brand</string>
+    <string name="i_manufacture_the_product_and_own_the_brand">I manufacture the product and own the brand</string>
+    <string name="i_am_authorised_by_the_brand_owner_to_manage_the_product_information_for_their_branded_products_on_winsant">I am authorised by the brand owner to manage the product information for their branded products on Winsant</string>
+    <string name="upload_brand_logo">Upload Brand Logo</string>
+    <string name="upload_document">Upload document</string>
+    <string name="if_you_have_a_trademark_document_upload_here">If you have a trademark document, upload here</string>
+    <string name="enter_your_brand_s_website_address">Enter your brand\'s website address</string>
+    <string name="have_you_purchased_upc_ean_or_jan_for_all_your_products">Have you purchased UPC, EAN or JAN for all your products?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="new_brand_request">New Brand Request</string>
+    <string name="requested_brand_status">Requested Brand Status</string>
+    <string name="add_new_product">Add New Product</string>
 
 </resources>

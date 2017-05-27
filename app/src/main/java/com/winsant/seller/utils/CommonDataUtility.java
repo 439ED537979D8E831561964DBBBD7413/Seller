@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
@@ -21,6 +22,12 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.winsant.seller.ui.MyApplication;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 /**
  * Created by Developer on 2/10/2017.
@@ -98,6 +105,49 @@ public class CommonDataUtility {
                         Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(
                 activity.getCurrentFocus().getWindowToken(), 0);
+    }
+
+    public static Bitmap decodeFile(File f, int WIDTH, int HIGHT) {
+        try {
+            //Decode image size
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inJustDecodeBounds = true;
+            BitmapFactory.decodeStream(new FileInputStream(f), null, o);
+
+            //The new size we want to scale to
+            final int REQUIRED_WIDTH = WIDTH;
+            final int REQUIRED_HIGHT = HIGHT;
+            //Find the correct scale value. It should be the power of 2.
+            int scale = 1;
+            while (o.outWidth / scale / 2 >= REQUIRED_WIDTH && o.outHeight / scale / 2 >= REQUIRED_HIGHT)
+                scale *= 2;
+
+            //Decode with inSampleSize
+            BitmapFactory.Options o2 = new BitmapFactory.Options();
+            o2.inSampleSize = scale;
+            return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
+        } catch (FileNotFoundException e) {
+        }
+        return null;
+    }
+
+    public static void CopyStream(InputStream is, OutputStream os) {
+        final int buffer_size = 1024;
+        try {
+
+            byte[] bytes = new byte[buffer_size];
+            for (; ; ) {
+                //Read byte from input stream
+
+                int count = is.read(bytes, 0, buffer_size);
+                if (count == -1)
+                    break;
+
+                //Write byte from output stream
+                os.write(bytes, 0, count);
+            }
+        } catch (Exception ex) {
+        }
     }
 
 //    public static void setBadgeCount(Context context, MenuItem itemCart, String count) {

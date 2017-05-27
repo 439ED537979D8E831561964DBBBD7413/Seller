@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_design"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="36dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="@string/category_status"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgClose"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ico_close_svg" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tblCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="@string/category"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/categoryTitle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+
+    <TableRow
+        android:id="@+id/tblRequestId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="@string/request_id"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/RequestId"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tblRequestStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="@string/status"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/RequestStatus"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tblRequestTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="@string/request_time"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/RequestTime"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tblAdminTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="@string/admin_time"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/AdminTime"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:id="@+id/tblComments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:text="@string/comments"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/Comments"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:textColor="@color/colorBlack"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+
+</LinearLayout>

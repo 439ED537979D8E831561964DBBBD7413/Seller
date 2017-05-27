@@ -2,6 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.winsant.seller">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature
+        android:glEsVersion="0x00030000"
+        android:required="true" />
+
+    <!-- GCM connects to Internet Services. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".ui.MyApplication"
         android:allowBackup="true"
@@ -44,6 +58,16 @@
             android:name=".ui.BusinessProfileActivity"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".ui.BrandRequestActivity"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+        <activity
+            android:name=".ui.BrandStatusActivity"
+            android:screenOrientation="sensorPortrait"
+            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
+
+        <activity android:name=".imgcrop.CropImageActivity" />
 
     </application>
 

@@ -21,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.winsant.seller.R;
+import com.winsant.seller.ui.fragment.BrandFragment;
+import com.winsant.seller.ui.fragment.CategoryFragment;
 import com.winsant.seller.ui.fragment.HomeFragment;
 import com.winsant.seller.ui.fragment.ListingFragment;
 import com.winsant.seller.ui.fragment.OrderFragment;
@@ -134,6 +136,16 @@ public class HomeActivity extends AppCompatActivity {
                         tag = "home";
                         setToolbarTitle(getString(R.string.nav_home));
                         pushFragment(new HomeFragment());
+                        break;
+                    case R.id.nav_category:
+                        tag = "category";
+                        setToolbarTitle(getString(R.string.nav_category));
+                        pushFragment(new CategoryFragment());
+                        break;
+                    case R.id.nav_brand:
+                        tag = "brand";
+                        setToolbarTitle(getString(R.string.nav_brand));
+                        pushFragment(new BrandFragment());
                         break;
                     case R.id.nav_order:
                         tag = "order";

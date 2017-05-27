@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@drawable/dialog_design"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="36dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="@string/category_status"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imgClose"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ico_close_svg" />
+    </TableRow>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/rose" />
+
+    <TableRow
+        android:id="@+id/tblBrand"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <EditText
+            android:id="@+id/edtBrand"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_attribute"
+            android:hint="@string/enter_brand_name"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:lines="1"
+            android:padding="8dp"
+            android:textColor="@color/oil"
+            android:textColorHint="@color/aluminum"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center|end"
+            android:background="@drawable/bg_ratting"
+            android:text="@string/submit"
+            android:textColor="@color/colorWhite" />
+
+    </TableRow>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:layout_weight="1" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/rose" />
+
+    <Button
+        android:id="@+id/btnOk"
+        android:layout_width="80dp"
+        android:layout_height="36dp"
+        android:layout_gravity="center|end"
+        android:background="@drawable/bg_ratting"
+        android:text="@string/ok"
+        android:textColor="@color/colorWhite"
+        android:visibility="visible" />
+
+</LinearLayout>
