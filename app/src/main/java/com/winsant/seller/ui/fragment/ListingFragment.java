@@ -1,5 +1,6 @@
 package com.winsant.seller.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.winsant.seller.R;
+import com.winsant.seller.ui.AddNewProductActivity;
 
 /**
  * Created by Developer on 5/11/2017.
@@ -15,7 +17,6 @@ import com.winsant.seller.R;
 public class ListingFragment extends BaseFragment {
 
     private View rootView;
-    private TextView addNewProduct;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -25,6 +26,12 @@ public class ListingFragment extends BaseFragment {
     }
 
     private void InitUI() {
-        addNewProduct = (TextView) rootView.findViewById(R.id.addNewProduct);
+        TextView addNewProduct = (TextView) rootView.findViewById(R.id.addNewProduct);
+        addNewProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(activity, AddNewProductActivity.class));
+            }
+        });
     }
 }

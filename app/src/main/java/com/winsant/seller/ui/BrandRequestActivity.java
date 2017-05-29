@@ -378,35 +378,6 @@ public class BrandRequestActivity extends AppCompatActivity implements View.OnCl
         Glide.with(activity).load(R.drawable.no_data).into(imgError);
     }
 
-
-    private void showJson() {
-        JSONObject obj = new JSONObject();
-        try {
-
-            obj.put("seller_id", MyApplication.getInstance().getPreferenceUtility().getSellerId());
-            obj.put("token_id", MyApplication.getInstance().getPreferenceUtility().getToken());
-            obj.put("category_id", CategoryId);
-            obj.put("brand_name", txtBrandName.getText().toString());
-            obj.put("brand_id", BrandId);
-            obj.put("brand_relationship", rbManufacture.isChecked() ? "0" : "1");
-            obj.put("upc", rbYes.isChecked() ? "Yes" : "No");
-            obj.put("brand_website", edtBrandWebSite.getText().toString());
-
-            obj.put("brand_logo_img", strBrandLogo);
-            obj.put("brand_logo_img_name", strBrandLogoName);
-            obj.put("trad_doc_img", strTrademark);
-            obj.put("trad_doc_img_name", strTrademarkName);
-            obj.put("auth_letter_img", strDocument);
-            obj.put("auth_letter_img_name", strDocumentName);
-
-            System.out.println(StaticDataUtility.APP_TAG + " brand_request param --> " + obj.toString());
-
-        } catch (Exception e) {
-            System.out.println(StaticDataUtility.APP_TAG + " brand_request param error --> " + e.toString());
-        }
-
-    }
-
     private void brand_request() {
 
         progressHUD = KProgressHUD.create(activity)

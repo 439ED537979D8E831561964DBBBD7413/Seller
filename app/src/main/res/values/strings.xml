@@ -107,5 +107,6 @@
     <string name="new_brand_request">New Brand Request</string>
     <string name="requested_brand_status">Requested Brand Status</string>
     <string name="add_new_product">Add New Product</string>
+    <string name="next">Next</string>
 
 </resources>

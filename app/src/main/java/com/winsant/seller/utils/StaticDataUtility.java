@@ -23,6 +23,7 @@ public class StaticDataUtility {
     public static String BRAND_REGISTRY = "seller/brand_registry";
     public static String BRAND_REQUEST = "seller/brand_request";
     public static String BRAND_APPROVAL = "seller/brand_approval";
+    public static String ADD_P_CATEGORY_GET = "seller/add_p_category_get";
     public static String ADD_PRD_CHK_CAT_BRD = "seller/add_prd_chk_cat_brd";
 
     public static String FORGOTTEN_PASSWORD = "users/forgotten_password";
