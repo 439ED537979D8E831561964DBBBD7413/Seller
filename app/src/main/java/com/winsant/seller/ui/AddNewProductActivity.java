@@ -2,7 +2,6 @@ package com.winsant.seller.ui;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -28,7 +27,7 @@ public class AddNewProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.new_product_fragment_1);
+        setContentView(R.layout.activity_new_product);
         activity = AddNewProductActivity.this;
         InitUI();
     }
@@ -55,16 +54,12 @@ public class AddNewProductActivity extends AppCompatActivity {
             });
         }
 
-        getSupportFragmentManager().beginTransaction().add(R.id.container, new AddProductFragment_1()).addToBackStack(null).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.frameContainer, new AddProductFragment_1()).addToBackStack(null).commit();
     }
 
     private void showDialog() {
-        AlertDialog.Builder builder;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            builder = new AlertDialog.Builder(activity, android.R.style.Theme_Material_Dialog_Alert);
-        } else {
-            builder = new AlertDialog.Builder(activity);
-        }
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle("Discard Product")
                 .setMessage("Are you sure you want to discard this product?")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
@@ -77,7 +72,6 @@ public class AddNewProductActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 })
-                .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
     }
 

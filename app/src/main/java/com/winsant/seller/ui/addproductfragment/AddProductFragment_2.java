@@ -5,16 +5,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NoConnectionError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.winsant.seller.R;
 import com.winsant.seller.kprogresshud.KProgressHUD;
+import com.winsant.seller.ui.MyApplication;
 import com.winsant.seller.utils.CommonDataUtility;
+import com.winsant.seller.utils.StaticDataUtility;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Developer on 5/11/2017.
@@ -22,13 +35,10 @@ import com.winsant.seller.utils.CommonDataUtility;
 
 public class AddProductFragment_2 extends AddBaseFragment implements View.OnClickListener {
 
-    private ImageView imgError;
-    private LinearLayout ll_one;
-    private TextView txtBrandName, txtCategoryName;
     private KProgressHUD progressHUD;
     private String BrandName = "", CategoryName = "";
     private RadioButton rbYes, rbNo;
-    private RelativeLayout rl_add_product;
+    private LinearLayout rl_add_product;
 
     private EditText edtSellerSKU, edtProductName, edtEAN, edtUPC, edtMPN, edtDescription;
     private String strSellerSKU = "", strProductName = "", strEAN = "", strUPC = "", strMPN = "", strDescription = "";
@@ -51,15 +61,15 @@ public class AddProductFragment_2 extends AddBaseFragment implements View.OnClic
 
         activity.mToolbar_title.setText(R.string.mandatory_points);
 
-        rl_add_product = (RelativeLayout) rootView.findViewById(R.id.rl_add_product);
+        rl_add_product = (LinearLayout) rootView.findViewById(R.id.rl_add_product);
 
         rbYes = (RadioButton) rootView.findViewById(R.id.rbYes);
         rbNo = (RadioButton) rootView.findViewById(R.id.rbNo);
 
-        txtBrandName = (TextView) rootView.findViewById(R.id.txtBrandName);
+        TextView txtBrandName = (TextView) rootView.findViewById(R.id.txtBrandName);
         txtBrandName.setText(BrandName);
 
-        txtCategoryName = (TextView) rootView.findViewById(R.id.txtCategoryName);
+        TextView txtCategoryName = (TextView) rootView.findViewById(R.id.txtCategoryName);
         txtCategoryName.setText(CategoryName);
 
         edtSellerSKU = (EditText) rootView.findViewById(R.id.edtSellerSKU);
@@ -70,10 +80,7 @@ public class AddProductFragment_2 extends AddBaseFragment implements View.OnClic
         edtDescription = (EditText) rootView.findViewById(R.id.edtDescription);
 
         rootView.findViewById(R.id.btnNext).setOnClickListener(this);
-        rootView.findViewById(R.id.btnPrevious).setOnClickListener(this);
 
-        ll_one = (LinearLayout) rootView.findViewById(R.id.ll_one);
-        imgError = (ImageView) rootView.findViewById(R.id.imgError);
     }
 
     @Override
@@ -94,20 +101,20 @@ public class AddProductFragment_2 extends AddBaseFragment implements View.OnClic
                     String message = checkValidation();
 
                     if (message.equals("true")) {
-
+                        AddProductDetailsData();
                     } else {
                         CommonDataUtility.showSnackBar(rl_add_product, message);
                     }
 
                 } else {
-                    Toast.makeText(activity, getString(R.string.no_internet), Toast.LENGTH_SHORT).show();
+                    CommonDataUtility.showSnackBar(rl_add_product, getString(R.string.no_internet));
                 }
 
                 break;
 
-            case R.id.btnPrevious:
-                activity.getSupportFragmentManager().popBackStack();
-                break;
+//            case R.id.btnPrevious:
+//                activity.getSupportFragmentManager().popBackStack();
+//                break;
         }
     }
 
@@ -119,132 +126,96 @@ public class AddProductFragment_2 extends AddBaseFragment implements View.OnClic
             return "Please enter product name";
         else if (strDescription.equals(""))
             return "Please enter product description";
+        else if (strDescription.length() < 120)
+            return "Please enter minimum 120 character for product description";
         else if (!rbYes.isChecked() && !rbNo.isChecked())
             return "Please select product has variant or not";
         else return "true";
     }
 
-//    private void getData() {
-//
-//        if (CommonDataUtility.checkConnection(activity)) {
-//
-//            imgError.setVisibility(View.GONE);
-//            getCategoryBrandData();
-//
-//        } else {
-//
-//            ll_one.setVisibility(View.GONE);
-//            imgError.setVisibility(View.VISIBLE);
-//            Glide.with(activity).load(R.drawable.no_wifi).into(imgError);
-//        }
-//    }
+    private void AddProductDetailsData() {
 
-//    private void getCategoryBrandData() {
-//
-//        BrandArrayList = new ArrayList<>();
-//        CategoryArrayList = new ArrayList<>();
-//
-//        progressHUD = KProgressHUD.create(activity)
-//                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
-//                .setCancellable(false).show();
-//
-//        JSONObject obj = new JSONObject();
-//        try {
-//
-//            obj.put("seller_id", MyApplication.getInstance().getPreferenceUtility().getSellerId());
-//            obj.put("token_id", MyApplication.getInstance().getPreferenceUtility().getToken());
-//            System.out.println(StaticDataUtility.APP_TAG + " getCategoryBrandData param --> " + obj.toString());
-//
-//        } catch (Exception e) {
-//            System.out.println(StaticDataUtility.APP_TAG + " getCategoryBrandData param error --> " + e.toString());
-//        }
-//
-//        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-//                StaticDataUtility.SERVER_URL + StaticDataUtility.ADD_P_CATEGORY_GET, obj,
-//                new Response.Listener<JSONObject>() {
-//                    @Override
-//                    public void onResponse(JSONObject response) {
-//
-//                        System.out.println(StaticDataUtility.APP_TAG + " getCategoryBrandData response --> " + response);
-//
-//                        try {
-//
-//                            JSONObject jsonObject = new JSONObject(response.toString());
-//                            final String message = jsonObject.optString("message");
-//                            final String success = jsonObject.optString("success");
-//
-//                            if (success.equals("1")) {
-//
-//                                if (jsonObject.has("brand_res")) {
-//                                    JSONArray res_cat = jsonObject.optJSONArray("brand_res");
-//
-//                                    for (int i = 0; i < res_cat.length(); i++) {
-//
-//                                        JSONObject res_cat_object = res_cat.optJSONObject(i);
-//                                        BrandArrayList.add(new BrandModel(res_cat_object.optString("brand_id"), res_cat_object.optString("brand_name")));
-//                                    }
-//                                }
-//
-//                                if (jsonObject.has("cat_res")) {
-//                                    JSONArray cat_name = jsonObject.optJSONArray("cat_res");
-//
-//                                    for (int i = 0; i < cat_name.length(); i++) {
-//
-//                                        JSONObject get_cat_object = cat_name.optJSONObject(i);
-//                                        CategoryArrayList.add(new CategoryModel(get_cat_object.optString("category_ids"), get_cat_object.optString("category"), "0"));
-//                                    }
-//                                }
-//
-//                                progressHUD.dismiss();
-//
-//                            } else {
-//
-//                                progressHUD.dismiss();
-//                                Toast.makeText(activity, "Something problem, Try again!!", Toast.LENGTH_SHORT).show();
-//                                noDataError();
-//                            }
-//
-//                        } catch (Exception e) {
-//                            System.out.println(StaticDataUtility.APP_TAG + " error --> " + e.toString());
-//                            progressHUD.dismiss();
-//                            noDataError();
-//                        }
-//                    }
-//                }, new Response.ErrorListener() {
-//
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                progressHUD.dismiss();
-//                imgError.setVisibility(View.VISIBLE);
-//
-//                System.out.println(StaticDataUtility.APP_TAG + " error --> " + error.getMessage());
-//
-//                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
-//                    Glide.with(activity).load(R.drawable.ico_wifi_off_svg).into(imgError);
-//                } else {
-//                    noDataError();
-//                }
-//            }
-//        }) {
-//            @Override
-//            public Map<String, String> getHeaders() throws AuthFailureError {
-//                HashMap<String, String> headers = new HashMap<String, String>();
-//                headers.put("Content-Type", "application/json; charset=utf-8");
-//                return headers;
-//            }
-//        };
-//
-//        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(60000,
-//                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-//                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-//
-//        // Adding request to request queue
-//        Volley.newRequestQueue(activity).add(jsonObjReq);
-//    }
-//
-//    private void noDataError() {
-//        ll_one.setVisibility(View.GONE);
-//        imgError.setVisibility(View.VISIBLE);
-//        Glide.with(activity).load(R.drawable.no_data).into(imgError);
-//    }
+
+        progressHUD = KProgressHUD.create(activity)
+                .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE)
+                .setCancellable(false).show();
+
+        JSONObject obj = new JSONObject();
+        try {
+
+            obj.put("seller_id", MyApplication.getInstance().getPreferenceUtility().getSellerId());
+            obj.put("token_id", MyApplication.getInstance().getPreferenceUtility().getToken());
+            obj.put("add_p_id", MyApplication.getInstance().getPreferenceUtility().getString("product_id"));
+            obj.put("product_name", strProductName);
+            obj.put("seller_sku", strSellerSKU);
+            obj.put("product_detail", strDescription);
+            obj.put("is_variant", rbYes.isChecked() ? "1" : "0");
+            obj.put("EAN", strEAN);
+            obj.put("UPC", strUPC);
+            obj.put("MPN", strMPN);
+
+            System.out.println(StaticDataUtility.APP_TAG + " AddProductDetailsData param --> " + obj.toString());
+
+        } catch (Exception e) {
+            System.out.println(StaticDataUtility.APP_TAG + " AddProductDetailsData param error --> " + e.toString());
+        }
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                StaticDataUtility.SERVER_URL + StaticDataUtility.ADD_P_DETAIL_POST, obj,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        System.out.println(StaticDataUtility.APP_TAG + " AddProductDetailsData response --> " + response);
+
+                        try {
+
+                            JSONObject jsonObject = new JSONObject(response.toString());
+                            final String message = jsonObject.optString("message");
+                            final String success = jsonObject.optString("success");
+
+                            if (success.equals("1")) {
+                                progressHUD.dismiss();
+                                activity.getSupportFragmentManager().beginTransaction().add(R.id.frameContainer, new AddProductFragment_2()).addToBackStack(null).commit();
+                            } else {
+
+                                progressHUD.dismiss();
+                                CommonDataUtility.showSnackBar(rl_add_product, message);
+                            }
+
+                        } catch (Exception e) {
+                            progressHUD.dismiss();
+                            CommonDataUtility.showSnackBar(rl_add_product, "Something problem, Try again!!");
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                progressHUD.dismiss();
+
+                System.out.println(StaticDataUtility.APP_TAG + " error --> " + error.getMessage());
+
+                if (error instanceof TimeoutError || error instanceof NoConnectionError) {
+                    CommonDataUtility.showSnackBar(rl_add_product, getString(R.string.no_internet));
+                } else {
+                    CommonDataUtility.showSnackBar(rl_add_product, "Something problem, Try again!!");
+                }
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                return headers;
+            }
+        };
+
+        jsonObjReq.setRetryPolicy(new DefaultRetryPolicy(60000,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        // Adding request to request queue
+        Volley.newRequestQueue(activity).add(jsonObjReq);
+    }
 }

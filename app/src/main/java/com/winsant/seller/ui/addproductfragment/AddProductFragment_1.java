@@ -227,7 +227,7 @@ public class AddProductFragment_1 extends AddBaseFragment implements View.OnClic
         }
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                StaticDataUtility.SERVER_URL + StaticDataUtility.ADD_PRD_CHK_CAT_BRD, obj,
+                StaticDataUtility.SERVER_URL + StaticDataUtility.ADD_P_CATEGORY_POST, obj,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -250,7 +250,9 @@ public class AddProductFragment_1 extends AddBaseFragment implements View.OnClic
                                 bundle.putString("brand_name", txtBrandName.getText().toString());
                                 fragment.setArguments(bundle);
 
-                                activity.getSupportFragmentManager().beginTransaction().add(R.id.container, fragment).addToBackStack(null).commit();
+                                MyApplication.getInstance().getPreferenceUtility().setString("product_id", jsonObject.optString("add_p_id"));
+
+                                activity.getSupportFragmentManager().beginTransaction().add(R.id.frameContainer, fragment).addToBackStack(null).commit();
 
                             } else {
                                 progressHUD.dismiss();
