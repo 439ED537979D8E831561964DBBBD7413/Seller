@@ -479,6 +479,9 @@ public class BrandRequestActivity extends AppCompatActivity implements View.OnCl
         LayoutInflater inflater = LayoutInflater.from(activity);
         View view = inflater.inflate(R.layout.dialog_list, null);
 
+        TextView txtTitle = (TextView) view.findViewById(R.id.txtTitle);
+        txtTitle.setText("Select Brand");
+
         ImageView imgClose = (ImageView) view.findViewById(R.id.imgClose);
         imgClose.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -530,6 +533,9 @@ public class BrandRequestActivity extends AppCompatActivity implements View.OnCl
 
         LayoutInflater inflater = LayoutInflater.from(activity);
         View view = inflater.inflate(R.layout.dialog_list, null);
+
+        TextView txtTitle = (TextView) view.findViewById(R.id.txtTitle);
+        txtTitle.setText("Select Category");
 
         ImageView imgClose = (ImageView) view.findViewById(R.id.imgClose);
         imgClose.setOnClickListener(new View.OnClickListener() {

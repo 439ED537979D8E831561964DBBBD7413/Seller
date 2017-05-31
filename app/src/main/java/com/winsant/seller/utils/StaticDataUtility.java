@@ -9,7 +9,8 @@ public class StaticDataUtility {
     public static String APP_TAG = "WinsantSeller";
     // public static BadgeStyle style = ActionItemBadge.BadgeStyles.RED.getStyle();
 
-    // "userid":"570"
+    // patel.jigar92@gmail.com
+    // 9974171348
 
     public static String SERVER_URL = "http://192.168.1.107/seller_api/";
     // public static String SERVER_URL = "http://api.winsant.com/";

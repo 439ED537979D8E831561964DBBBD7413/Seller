@@ -69,10 +69,6 @@
             android:name=".ui.AddNewProductActivity"
             android:screenOrientation="sensorPortrait"
             android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
-        <activity
-            android:name=".ui.AddNewProductActivity1"
-            android:screenOrientation="sensorPortrait"
-            android:windowSoftInputMode="adjustResize|stateAlwaysHidden" />
 
         <activity android:name=".imgcrop.CropImageActivity" />
 

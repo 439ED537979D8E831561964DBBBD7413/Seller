@@ -31,7 +31,7 @@ public class BrandCategorySingleListAdapter extends RecyclerView.Adapter<BrandCa
     }
 
     public interface onClickListener {
-        void onClick(int position, String category_id, String category_name, String friendly_url, String isChecked);
+        void onClick(int position, String category_id, String category_name);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
@@ -67,8 +67,7 @@ public class BrandCategorySingleListAdapter extends RecyclerView.Adapter<BrandCa
                     int position = getAdapterPosition();
 
                     if (clickListener != null)
-                        clickListener.onClick(position, categoryModelList.get(position).getCategory_id(), categoryModelList.get(position).getCategory_name(),
-                                categoryModelList.get(position).getRequest_status(), categoryModelList.get(position).getIsChecked());
+                        clickListener.onClick(position, categoryModelList.get(position).getCategory_id(), categoryModelList.get(position).getCategory_name());
                 }
             });
         }

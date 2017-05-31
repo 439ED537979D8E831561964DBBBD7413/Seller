@@ -108,5 +108,14 @@
     <string name="requested_brand_status">Requested Brand Status</string>
     <string name="add_new_product">Add New Product</string>
     <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="seller_sku_code">Seller SKU Code</string>
+    <string name="product_name">Product Name</string>
+    <string name="european_article_number">European Article Number</string>
+    <string name="universal_product_code">Universal Product Code</string>
+    <string name="manufacturer_s_part_number">Manufacturer\'s Part Number</string>
+    <string name="product_description">Product Description</string>
+    <string name="mandatory_points">Mandatory Points</string>
+    <string name="do_you_have_variant">Do you have variant?</string>
 
 </resources>
