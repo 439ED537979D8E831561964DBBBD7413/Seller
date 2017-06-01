@@ -249,6 +249,7 @@
                 android:hint="@string/product_description"
                 android:imeOptions="actionDone"
                 android:inputType="textMultiLine"
+                android:lines="6"
                 android:minLines="4"
                 android:padding="8dp"
                 android:textColor="@color/oil"
